@@ -1,6 +1,6 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
-        //Arrays.sort(coins);
+        Arrays.sort(coins);
     int [] few = new int[amount + 1];
         Arrays.fill(few, amount + 1);
     few[0] = 0;
@@ -9,7 +9,7 @@ class Solution {
             if(coins[j]<= i){
             few[i] = Math.min(few[i], 1 + few[i - coins[j]]);
             } 
-            //else {break;}
+            else {break;}
         }   
 }
 
