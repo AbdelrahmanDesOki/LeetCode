@@ -1,22 +1,17 @@
 class Solution {
     public int numTrees(int n) {
-     HashMap <Integer, Integer> nop = new HashMap<>();
-        int sum = 0;
-        if (n == 0 || n == 1) {
-            return 1;
-        }
-        else{
-
-            for (int i = 1; i <= n; ++i) {
-                if(!nop.containsKey(i-1))
-                    nop.put(i-1,numTrees(i-1));
-                if(!nop.containsKey(n-i))
-                    nop.put(n-i,numTrees(n-i));
-
-                sum += nop.get(n-i) * nop.get(i-1);
+            int[] sol = new int[n+1];
+        // The value of the first index will be 1.
+        sol[0] = 1;
+        // Run a loop from 1 to n+1...
+        for(int i = 1; i <= n; i++) {
+            // Within the above loop, run a nested loop from 0 to i...
+            for(int j = 0; j < i; j++) {
+                // Update the i-th position of the array by adding the multiplication of the respective index...
+                sol[i] += sol[j] * sol[i-j-1];
             }
         }
-
-        return sum;
+        // Return the value of the nth index of the array to get the solution...
+        return sol[n];
     }
 }
